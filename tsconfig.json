@@ -5,6 +5,12 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "el-ng2": [
+        "dist/el-ng2/el-ng2",
+        "dist/el-ng2"
+      ]
+    },
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
