@@ -11,7 +11,7 @@
         "dist/el-ng2"
       ]
     },
-    "strict": true,
+//    "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
