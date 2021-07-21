@@ -81,7 +81,8 @@
               "projects/eco-ui/src/assets"
             ],
             "styles": [
-              "projects/eco-ui/src/styles.scss"
+              "projects/eco-ui/src/styles.scss",
+							"./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": []
           },
