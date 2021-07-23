@@ -2,7 +2,7 @@
   "name": "eco",
   "version": "0.0.0",
   "scripts": {
-    "start UI": "ng serve eco-ui --port:4230",
+    "start UI": "ng serve eco-ui --port=4230",
     "watch LIB": "ng build el-ng2 --watch=true",
     "build eco-ui": "ng build eco-ui",
     "build el-ng2": "ng build el-ng2"
