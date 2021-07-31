@@ -9,6 +9,9 @@
       "@el-ng2/core": [
         "dist/el-ng2/el-ng2",
         "dist/el-ng2"
+      ],
+      "@eco-ui/*": [
+        "projects/eco-ui/*"
       ]
     },
     "strict": true,
