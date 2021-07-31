@@ -1,5 +1,10 @@
 {
   "root": true,
+  "ignorePatterns": [
+    "**/main.ts",
+    "**/*test.ts",
+    "**/*spec.ts"
+  ],
   "overrides": [
     {
       "files": [

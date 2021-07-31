@@ -31,6 +31,15 @@
             "tsConfig": "projects/el-ng2/tsconfig.spec.json",
             "karmaConfig": "projects/el-ng2/karma.conf.js"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/el-ng2/src/**/*.ts",
+              "projects/el-ng2/src/**/*.component.html"
+            ]
+          }
         }
       }
     },
@@ -158,8 +167,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/**/src/**/*.ts",
-              "projects/**/src/**/*.component.html"
+              "projects/eco-ui/src/**/*.ts",
+              "projects/eco-ui/src/**/*.component.html"
             ]
           }
         }
