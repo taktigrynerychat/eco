@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CapThemes } from '@el-ng2/core';
 
 @Component({
   selector: 'eco-root',
@@ -7,10 +8,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title: string = 'eco-ui';
-
-  changeTheme(e: any): void {
-    e.target.checked
-      ? document.body.setAttribute('cap-theme', 'dark')
-      : document.body.removeAttribute('cap-theme');
-  }
+  capThemes: typeof CapThemes = CapThemes;
+  currentTheme: CapThemes;
 }
