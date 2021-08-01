@@ -1,0 +1,22 @@
+@import 'variables';
+
+@mixin themify($themes: $themes) {
+  @each $theme, $map in $themes {
+    & > *[cap-theme=#{$theme}] {
+      @each $key, $value in $map {
+        --cap-#{$key}: #{$value};
+      }
+    }
+  }
+}
+
+@mixin theme-color-vars($theme, $themes: $themes) {
+    @each $key, $value in map-get($themes, $theme) {
+      --cap-#{$key}: #{$value};
+    }
+}
+
+:root {
+  @include theme-color-vars(light);
+  @include themify($themes);
+}

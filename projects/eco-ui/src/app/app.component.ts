@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title: string = 'eco-ui';
+
+  changeTheme(e: any): void {
+    e.target.checked
+      ? document.body.setAttribute('cap-theme', 'dark')
+      : document.body.removeAttribute('cap-theme');
+  }
 }
