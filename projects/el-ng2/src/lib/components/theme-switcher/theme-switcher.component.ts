@@ -37,7 +37,6 @@ export class ThemeSwitcherComponent implements OnChanges {
     @Inject(CAP_THEMES_TOKEN) private readonly themes: Map<CapThemes | number, string>,
     @Inject(CAP_DEFAULT_THEME_TOKEN) private readonly defaultTheme: CapThemes | number,
   ) {
-    // super(document);
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -58,7 +57,7 @@ export class ThemeSwitcherComponent implements OnChanges {
   }
 
   private addTransition(): void {
-    this.wrapperElement.style.transition = `${ this.transition }ms !important`;
+    this.wrapperElement.style.transition = `${ this.transition }ms`;
     setTimeout(() => {
       this.wrapperElement.style.transition = null;
     }, this.transition);
