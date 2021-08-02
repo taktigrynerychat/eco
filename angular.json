@@ -83,7 +83,7 @@
             "index": "projects/eco-ui/src/index.html",
             "main": "projects/eco-ui/src/main.ts",
             "polyfills": "projects/eco-ui/src/polyfills.ts",
-            "tsConfig": "projects/eco-ui/tsconfig.app.json",
+            "tsConfig": "projects/eco-ui/tsconfig.dev.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/eco-ui/src/favicon.ico",
@@ -96,6 +96,7 @@
           },
           "configurations": {
             "production": {
+              "tsConfig": "projects/eco-ui/tsconfig.prod.json",
               "budgets": [
                 {
                   "type": "initial",

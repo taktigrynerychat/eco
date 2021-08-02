@@ -2,10 +2,10 @@
   "name": "eco",
   "version": "0.0.0",
   "scripts": {
-    "start UI": "ng serve eco-ui --port=4230",
-    "watch LIB": "ng build el-ng2 --watch=true",
+    "start eco-ui": "ng serve eco-ui --port=4230",
     "build eco-ui": "ng build eco-ui",
     "build el-ng2": "ng build el-ng2",
+    "watch el-ng2": "ng build el-ng2 --watch=true",
     "lint eco-ui": "ng lint eco-ui",
     "lint eco-ui fix": "ng lint eco-ui --fix",
     "lint el-ng2": "ng lint el-ng2",

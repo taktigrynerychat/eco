@@ -24,7 +24,7 @@ export class ThemeSwitcherComponent implements OnChanges {
   @Input()
   public themedWrapperSelector: string = 'body';
   @Input()
-  public transition: number = 700;
+  public transition: number = 300;
   private currentTheme: CapThemes | number;
 
 
@@ -43,7 +43,7 @@ export class ThemeSwitcherComponent implements OnChanges {
     if (changes.theme.currentValue != null && changes.theme.currentValue !== this.currentTheme) {
       const currentThemeClass: string = this.getThemeClass(this.theme);
       if (currentThemeClass) {
-        this.addTransition();
+        this.transition && this.addTransition();
         this.wrapperElement.setAttribute('data-cap-theme', currentThemeClass);
         this.currentTheme = this.theme;
       } else {
