@@ -2,7 +2,7 @@
 
 @mixin themify($themes: $themes) {
   @each $theme, $map in $themes {
-    & > *[cap-theme=#{$theme}] {
+    & *[data-cap-theme=#{$theme}] {
       @each $key, $value in $map {
         --cap-#{$key}: #{$value};
       }

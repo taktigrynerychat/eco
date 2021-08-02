@@ -1,7 +1,11 @@
-<span class="lol">hello world!</span>
+<h1>hello world!</h1>
 <input
   type="checkbox"
   id="theme"
-  (change)="changeTheme($event)"
+  [(ngModel)]="currentTheme"
 >
 <label for="theme">dark theme</label>
+<el-theme-switcher
+  [theme]="currentTheme ? 1 : 0"
+></el-theme-switcher>
+

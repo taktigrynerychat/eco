@@ -5,6 +5,8 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
     "paths": {
       "@el-ng2/core": [
         "dist/el-ng2/el-ng2",
