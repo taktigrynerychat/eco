@@ -76,7 +76,8 @@
         "semi": [
           "error",
           "always"
-        ]
+        ],
+        "@angular-eslint/no-empty-lifecycle-method": "off"
       }
     },
     {

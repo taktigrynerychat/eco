@@ -1,31 +1,25 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostBinding, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { debounceTime, filter, skip, tap } from 'rxjs/operators';
 import { CAP_DEFAULT_THEME_TOKEN, CAP_THEMES_TOKEN, CapThemes } from '../../constants';
-
-// export abstract class CapStyleDynamicImport {
-//   protected constructor(
-//     private readonly documentRef: Document,
-//     private readonly style?: string,
-//   ) {
-//     Array.from(this.documentRef.head.querySelectorAll('style')).forEach((s: HTMLStyleElement) => {
-//       console.log(s.outerHTML);
-//     });
-//   }
-// }
+import { untilDestroyed } from '../../operators';
 
 @Component({
   selector: 'el-theme-switcher',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ThemeSwitcherComponent implements OnChanges {
+export class ThemeSwitcherComponent implements OnChanges, OnInit, OnDestroy {
   @Input()
   public theme: CapThemes | number = this.defaultTheme;
   @Input()
   public themedWrapperSelector: string = 'body';
   @Input()
   public transition: number = 300;
+
   private currentTheme: CapThemes | number;
+  private themeChange$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
 
   private get wrapperElement(): HTMLElement {
@@ -43,7 +37,7 @@ export class ThemeSwitcherComponent implements OnChanges {
     if (changes.theme.currentValue != null && changes.theme.currentValue !== this.currentTheme) {
       const currentThemeClass: string = this.getThemeClass(this.theme);
       if (currentThemeClass) {
-        this.transition && this.addTransition();
+        this.transition && this.themeChange$.next(true);
         this.wrapperElement.setAttribute('data-cap-theme', currentThemeClass);
         this.currentTheme = this.theme;
       } else {
@@ -52,15 +46,32 @@ export class ThemeSwitcherComponent implements OnChanges {
     }
   }
 
+  public ngOnInit(): void {
+    this.addTransition();
+  }
+
+  // for untilDestroyed
+  public ngOnDestroy(): void {
+  }
+
   private getThemeClass(theme: CapThemes): string {
     return this.themes.get(theme);
   }
 
   private addTransition(): void {
-    this.wrapperElement.style.transition = `${ this.transition }ms`;
-    setTimeout(() => {
-      this.wrapperElement.style.transition = null;
-    }, this.transition);
+    this.themeChange$
+      .pipe(
+        untilDestroyed(this),
+        filter((hasChanged: boolean) => !!hasChanged),
+        skip(1),
+        tap((value: boolean) => {
+          this.wrapperElement.style.transition = `${ this.transition }ms`;
+        }),
+        debounceTime(this.transition),
+      )
+      .subscribe(() => {
+        this.wrapperElement.style.transition = null;
+      });
   }
 
 }
