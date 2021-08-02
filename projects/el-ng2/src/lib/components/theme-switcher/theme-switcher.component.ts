@@ -64,7 +64,7 @@ export class ThemeSwitcherComponent implements OnChanges, OnInit, OnDestroy {
         untilDestroyed(this),
         filter((hasChanged: boolean) => !!hasChanged),
         skip(1),
-        tap((value: boolean) => {
+        tap(() => {
           this.wrapperElement.style.transition = `${ this.transition }ms`;
         }),
         debounceTime(this.transition),
