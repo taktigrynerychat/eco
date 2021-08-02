@@ -33,9 +33,8 @@ export class AppComponent implements OnInit {
 			let markerCluster = L.markerClusterGroup({
 				iconCreateFunction: function (cluster) {
 					let markers = cluster.getAllChildMarkers();
-					let html = '<div class="circle">' + markers.length + '</div>';
 					return L.divIcon({
-						html: html,
+						html: `<div class="circle">${markers.length}</div>`,
 						className: 'mycluster',
 						iconSize: L.point(32, 32)
 					});
