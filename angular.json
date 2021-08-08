@@ -93,7 +93,7 @@
               "projects/eco-ui/src/styles.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["projects/el-ng2/assets/styles"]
+              "includePaths": ["projects/el-ng2/styles"]
             },
             "scripts": []
           },
