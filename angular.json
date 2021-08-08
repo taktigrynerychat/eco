@@ -6,7 +6,7 @@
     "el-ng2": {
       "projectType": "library",
       "root": "projects/el-ng2",
-      "sourceRoot": "projects/el-ng2/src",
+      "sourceRoot": "projects/el-ng2",
       "prefix": "el",
       "architect": {
         "build": {

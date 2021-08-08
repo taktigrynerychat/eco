@@ -1,5 +1,9 @@
 {
   "compileOnSave": false,
+  "include": ["projects/**/*"],
+  "exclude": [
+    "projects/**/*.spec.ts",
+  ],
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -7,9 +11,8 @@
     "strictPropertyInitialization": false,
     "strictNullChecks": false,
     "paths": {
-      "@el-ng2/core": [
-        "projects/el-ng2",
-      ],
+      "@el-ng2/core": ["projects/el-ng2/index"],
+      "@el-ng2/core/*": ["projects/el-ng2/*"],
       "@eco-ui/*": [
         "projects/eco-ui/*"
       ]

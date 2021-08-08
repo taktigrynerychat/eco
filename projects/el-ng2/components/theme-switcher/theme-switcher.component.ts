@@ -2,8 +2,8 @@ import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, filter, skip, tap } from 'rxjs/operators';
-import { CAP_DEFAULT_THEME_TOKEN, CAP_THEMES_TOKEN, CapThemes } from '../../constants';
-import { untilDestroyed } from '../../operators';
+import { CAP_DEFAULT_THEME_TOKEN, CAP_THEMES_TOKEN, CapThemes } from '@el-ng2/core/constants';
+import { untilDestroyed } from '@el-ng2/core/operators';
 
 @Component({
   selector: 'el-theme-switcher',

@@ -1,3 +1,3 @@
-export * from './src/lib/components';
-export * from './src/lib/constants';
-export * from './src/lib/operators';
+export * from '@el-ng2/core/components';
+export * from '@el-ng2/core/constants';
+export * from '@el-ng2/core/operators';
