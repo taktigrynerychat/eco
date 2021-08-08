@@ -1,5 +1,5 @@
 {
-  "name": "@el-ng2/core",
+  "name": "@cap-ng2/core",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.1.2",

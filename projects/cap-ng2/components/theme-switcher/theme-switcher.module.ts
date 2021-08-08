@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CAP_DEFAULT_THEME_TOKEN, CAP_THEMES_MAP, CAP_THEMES_TOKEN, CapThemes } from '@el-ng2/core/constants';
-import { ThemeSwitcherConfig } from '@el-ng2/core/models';
+import { CAP_DEFAULT_THEME_TOKEN, CAP_THEMES_MAP, CAP_THEMES_TOKEN, CapThemes } from '@cap-ng2/core/constants';
+import { ThemeSwitcherConfig } from '@cap-ng2/core/models';
 import { ThemeSwitcherComponent } from './theme-switcher.component';
 
 @NgModule({

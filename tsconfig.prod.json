@@ -8,8 +8,8 @@
     "strictPropertyInitialization": false,
     "strictNullChecks": false,
     "paths": {
-      "@el-ng2/core": ["dist/el-ng2/index"],
-      "@el-ng2/core/*": ["dist/el-ng2/*"],
+      "@cap-ng2/core": ["dist/cap-ng2/index"],
+      "@cap-ng2/core/*": ["dist/cap-ng2/*"],
       "@eco-ui/*": [
         "projects/eco-ui/*"
       ]

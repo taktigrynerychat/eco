@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CapThemes } from '@el-ng2/core/constants';
+import { CapThemes } from '@cap-ng2/core/constants';
 
 @Component({
   selector: 'eco-root',
