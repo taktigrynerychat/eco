@@ -6,11 +6,11 @@ import { CAP_DEFAULT_THEME_TOKEN, CAP_THEMES_TOKEN, CapThemes } from '@cap-ng2/c
 import { untilDestroyed } from '@cap-ng2/core/operators';
 
 @Component({
-  selector: 'el-theme-switcher',
+  selector: 'cap-theme-switcher',
   template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ThemeSwitcherComponent implements OnChanges, OnInit, OnDestroy {
+export class CapThemeSwitcherComponent implements OnChanges, OnInit, OnDestroy {
   @Input()
   public theme: CapThemes | number = this.defaultTheme;
   @Input()

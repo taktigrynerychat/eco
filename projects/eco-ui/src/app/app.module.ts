@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { ThemeSwitcherModule } from '../../../cap-ng2/components';
+import { CapThemeSwitcherModule } from '@cap-ng2/core/components/theme-switcher';
 
 import { AppComponent } from './app.component';
 
@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ThemeSwitcherModule,
+    CapThemeSwitcherModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

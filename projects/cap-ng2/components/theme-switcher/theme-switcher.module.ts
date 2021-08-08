@@ -2,17 +2,17 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CAP_DEFAULT_THEME_TOKEN, CAP_THEMES_MAP, CAP_THEMES_TOKEN, CapThemes } from '@cap-ng2/core/constants';
 import { ThemeSwitcherConfig } from '@cap-ng2/core/models';
-import { ThemeSwitcherComponent } from './theme-switcher.component';
+import { CapThemeSwitcherComponent } from './theme-switcher.component';
 
 @NgModule({
   declarations: [
-    ThemeSwitcherComponent,
+    CapThemeSwitcherComponent,
   ],
   imports: [
     CommonModule,
   ],
   exports: [
-    ThemeSwitcherComponent,
+    CapThemeSwitcherComponent,
   ],
   providers: [
     {
@@ -25,8 +25,8 @@ import { ThemeSwitcherComponent } from './theme-switcher.component';
     },
   ],
 })
-export class ThemeSwitcherModule {
-  public static forRoot(themeSwitcherConfig: ThemeSwitcherConfig): ModuleWithProviders<ThemeSwitcherModule> {
+export class CapThemeSwitcherModule {
+  public static forRoot(themeSwitcherConfig: ThemeSwitcherConfig): ModuleWithProviders<CapThemeSwitcherModule> {
     return {
       ngModule: this,
       providers: [

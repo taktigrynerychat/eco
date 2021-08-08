@@ -26,7 +26,7 @@
           {
             "type": "attribute",
             "prefix": [
-              "el",
+              "cap",
               "eco"
             ],
             "style": "camelCase"
@@ -37,7 +37,7 @@
           {
             "type": "element",
             "prefix": [
-              "el",
+              "cap",
               "eco"
             ],
             "style": "kebab-case"
