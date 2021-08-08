@@ -16,7 +16,7 @@ export class ThemeSwitcherComponent implements OnChanges, OnInit, OnDestroy {
   @Input()
   public themedWrapperSelector: string = 'body';
   @Input()
-  public transition: number = 300;
+  public transition: number = 0;
 
   private currentTheme: CapThemes | number;
   private themeChange$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -47,7 +47,7 @@ export class ThemeSwitcherComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.addTransition();
+    this.transition && this.addTransition();
   }
 
   // for untilDestroyed
