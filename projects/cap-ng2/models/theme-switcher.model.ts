@@ -1,4 +1,4 @@
-import { CapThemes } from '../constants';
+import { CapThemes } from '@cap-ng2/core/constants';
 
 export interface ThemeSwitcherConfig {
   defaultTheme?: CapThemes | number;
