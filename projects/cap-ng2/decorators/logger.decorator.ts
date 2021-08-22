@@ -38,3 +38,29 @@ function prepareData(data: Observable<any>, propertyKey: string): Observable<any
     }),
   );
 }
+
+export function LogClassInstance<T extends { new(...args: any[]): any }>(constructor: T): T {
+  const original: T = constructor;
+
+  // a utility function to generate instances of a class
+  function construct(constructor: T, args: any[]): T{
+    let c: any = function() {
+      return new constructor(args);
+    };
+    c.prototype = constructor.prototype;
+    return new c();
+  }
+
+  // the new constructor behaviour
+  const f: any = function(args: any[]) {
+    const obj: any = construct(original, args);
+    console.log('New', obj);
+    return obj;
+  };
+
+  // copy prototype so intanceof operator still works
+  f.prototype = original.prototype;
+
+  // return new constructor (will override original)
+  return f;
+}
