@@ -7,10 +7,19 @@ $themes: (
   light: (
     background-color: #FFF,
 
-    primary-font-color: #FFF,
-    primary-color: #00B3B3,
-    primary-action-color: #A9DEDF,
-    primary-active-color: #00A3A1,
+    primary-default-100: #DDF1F3,
+    primary-default-200: #A9DEDF,
+    primary-default-300: #89D4D5,
+    primary-default-400: #6BC9CA,
+    primary-default-500: #00B3B3,
+    primary-default-600: #00A3A1,
+    primary-default-700: #00928E,
+    primary-default-800: #008581,
+    primary-default-900: #007570,
+
+    base-01: #FDFDFD,
+
+
     primary-disabled-background-color: #8A97AA,
 
     secondary-action-color: #A9DEDF,
@@ -21,9 +30,10 @@ $themes: (
 
     light-color: #D3DCE8,
 
+
     border-width: 1px,
     border-focus-width: 2px,
     border-radius: 5px,
-    button-padding: 4px 8 px,
+    button-padding: 4px 8px,
   ),
 );
