@@ -1,0 +1,53 @@
+.cap-button {
+  color: var(--cap-primary-color);
+  background-color: var(--cap-secondary-color);
+  border: var(--cap-border-width) solid var(--cap-secondary-color);
+  border-radius: var(--cap-border-radius);
+  padding: (--cap-button-padding);
+
+  &:focus {
+    border-color: var(--cap-secondary-action-color);
+    border-width: var(--cap-border-focus-width);
+  }
+
+  &:hover {
+    background-color: var(--cap-secondary-action-color);
+    border-color: var(--cap-secondary-action-color);
+  }
+
+  &:active {
+    background-color: var(--cap-secondary-active-color);
+    border-color: var(--cap-secondary-active-color);
+  }
+
+  &:disabled {
+    border-color: var(--cap-secondary-disabled-background-color);
+    background-color: var(--cap-secondary-disabled-background-color);
+    color: var(--cap-secondary-disabled-font-color);
+  }
+
+  &._primary {
+    background-color: var(--cap-primary-color);
+    color: var(--cap-primary-font-color);
+    border-color: var(--cap-primary-color);
+  }
+
+  &._primary:focus {
+    border-color: var(--cap-primary-action-color);
+  }
+
+  &._primary:hover {
+    background-color: var(--cap-primary-action-color);
+    border-color: var(--cap-primary-action-color);
+  }
+
+  &._primary:active {
+    background-color: var(--cap-primary-active-color);
+    border-color: var(--cap-primary-active-color);
+  }
+
+  &._primary:disabled {
+    background-color: var(--cap-primary-disabled-background-color);
+    border-color: var(--cap-primary-disabled-background-color);
+  }
+}

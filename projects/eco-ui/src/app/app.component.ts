@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CapThemes } from '@cap-ng2/core/constants';
+import {Component} from '@angular/core';
+import {CapThemes} from '@cap-ng2/core/constants';
 
 @Component({
   selector: 'eco-root',
@@ -10,4 +10,8 @@ export class AppComponent {
   title: string = 'eco-ui';
   capThemes: typeof CapThemes = CapThemes;
   currentTheme: CapThemes;
+
+  public hello(): void {
+    console.log('HELLO!');
+  }
 }
