@@ -1,0 +1,13 @@
+table.cap-table {
+  background: aliceblue;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: #25262f;
+
+  & th.cap-th {
+    background: darken(aliceblue, 15);
+
+  }
+
+
+}
