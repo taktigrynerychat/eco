@@ -1,0 +1,33 @@
+$palette: "default", "accent";
+$types: "primary";
+
+.cap-button {
+  border-radius: var(--cap-border-radius);
+  padding: var(--cap-button-padding);
+  border: var(--cap-border-width) solid transparent;
+  outline: none;
+
+  @each $type in $types {
+    &._#{$type} {
+      @each $color in $palette {
+        &._#{$color} {
+          color: var(--cap-base-01);
+          background-color: var(--cap-#{$type}-#{$color}-500);
+          &:focus-visible {
+            box-shadow: 0 0 0 2px var(--cap-#{$type}-#{$color}-400);
+          }
+          &:hover {
+            background-color: var(--cap-#{$type}-#{$color}-400);
+          }
+          &:active {
+            background-color: var(--cap-#{$type}-#{$color}-600);
+          }
+          //&:disabled {
+          //  background-color: var(--cap-secondary-disabled-background-color);
+          //  color: var(--cap-secondary-disabled-font-color);
+          //}
+        }
+      }
+    }
+  }
+}
