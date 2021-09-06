@@ -5,6 +5,8 @@ $types: "primary";
   border-radius: var(--cap-border-radius);
   padding: var(--cap-button-padding);
   border: var(--cap-border-width) solid transparent;
+  outline: none;
+
   @each $type in $types {
     &._#{$type} {
       @each $color in $palette {
@@ -12,7 +14,7 @@ $types: "primary";
           color: var(--cap-base-01);
           background-color: var(--cap-#{$type}-#{$color}-500);
           &:focus-visible {
-            outline-color: var(--cap-#{$type}-#{$color}-400)
+            box-shadow: 0 0 0 2px var(--cap-#{$type}-#{$color}-400);
           }
           &:hover {
             background-color: var(--cap-#{$type}-#{$color}-400);
