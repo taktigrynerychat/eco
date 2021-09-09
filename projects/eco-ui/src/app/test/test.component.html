@@ -3,7 +3,6 @@
   <thead capThead>
   <tr>
     <th *ngFor="let col of columns" capTh resizable>{{col}}</th>
-    <th capTh>index</th>
   </tr>
   </thead>
   <tbody
@@ -15,3 +14,5 @@
   </tr>
   </tbody>
 </table>
+
+<button (click)="changeColumns()">change</button>

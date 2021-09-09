@@ -12,7 +12,8 @@ import {
 import { CapCellDirective } from '@eco-ui/src/app/cap-cell.directive';
 import { CapTableDirective } from '@eco-ui/src/app/cap-table.directive';
 import { CapTbodyComponent } from '@eco-ui/src/app/cap-tbody/cap-tbody.component';
-import { Observable } from 'rxjs';
+import { CapTheadDirective } from '@eco-ui/src/app/cap-thead.directive';
+import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 @Component({
@@ -29,6 +30,7 @@ export class CapTrComponent<T> implements OnInit {
 
   public cells$: Observable<Readonly<Record<string, CapCellDirective>>>;
   public item$: Observable<Readonly<T>>;
+  public columns$: Observable<ReadonlyArray<string>>;
 
   constructor(
     @Inject(forwardRef(() => CapTableDirective))
@@ -51,10 +53,13 @@ export class CapTrComponent<T> implements OnInit {
 
     this.item$ = this.tbody.rows.changes.pipe(
       startWith(null),
-      map(
-        () =>
-          this.tbody.data[this.tbody.rows.toArray().findIndex((row: CapTrComponent<T>) => row === this)],
-      ),
+      map(() => this.tbody.data[this.tbody.rows.toArray().findIndex((row: CapTrComponent<T>) => row === this)]),
     );
+
+    this.columns$ = this.table.thList.changes
+      .pipe(
+        startWith(null),
+        map(() => this.table.columns),
+      );
   }
 }

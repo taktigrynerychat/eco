@@ -9,6 +9,9 @@ import {
   Optional, QueryList,
   ViewEncapsulation,
 } from '@angular/core';
+import { CapTableDirective } from '@eco-ui/src/app/cap-table.directive';
+import { CapTheadDirective } from '@eco-ui/src/app/cap-thead.directive';
+import { Observable } from 'rxjs';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -18,7 +21,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class CapThComponent {
+export class CapThComponent<T> {
 
   @HostBinding('class.cap-th')
   public hostClass: boolean = true;
@@ -33,9 +36,6 @@ export class CapThComponent {
   }
 
   private _resizable: boolean = false;
-
-  constructor() {
-  }
 
 }
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'eco-test',
@@ -23,12 +23,19 @@ export class TestComponent implements OnInit {
       name: 'Vlad',
       surname: 'Rusakov',
     },
-  ]
+  ];
 
   public columns: string[] = ['id', 'name', 'surname', 'london'];
-  constructor() { }
+
+  constructor(private cdr: ChangeDetectorRef) {
+  }
 
   ngOnInit(): void {
+  }
+
+  changeColumns(): void {
+    this.columns = ['id', 'name'];
+    this.cdr.detectChanges();
   }
 
 }
