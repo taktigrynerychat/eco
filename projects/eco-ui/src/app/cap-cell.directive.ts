@@ -8,7 +8,7 @@ export class CapCellDirective {
   @Input()
   public capCell: string = '';
 
-  constructor(@Inject(TemplateRef) public readonly template: TemplateRef<{}>) {
+  constructor(@Inject(TemplateRef) public readonly cellTemplate: TemplateRef<any>) {
   }
 
 }

@@ -4,7 +4,7 @@ import {
   Component,
   ContentChild, ContentChildren,
   forwardRef,
-  HostBinding,
+  HostBinding, Inject,
   Input,
   QueryList,
   ViewEncapsulation,
@@ -28,7 +28,7 @@ export class CapTbodyComponent<T> {
   public row?: Readonly<CapRowDirective<T>>;
 
   @ContentChildren(forwardRef(() => CapTrComponent))
-  public rows: QueryList<CapTrComponent<T>>;
+  public rows: QueryList<CapTrComponent<T>> = new QueryList<CapTrComponent<T>>();
 
   @HostBinding('class.cap-tbody')
   public hostClass: boolean = true;
@@ -36,5 +36,4 @@ export class CapTbodyComponent<T> {
   public itemToContext($implicit: T, index: number): { $implicit: T, index: number } {
     return {$implicit, index};
   }
-
 }

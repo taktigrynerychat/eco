@@ -1,7 +1,7 @@
 <p>hi</p>
-<table capTable>
+<table capTable [columns]="columns">
   <thead capThead>
-  <tr capTr>
+  <tr>
     <th *ngFor="let col of columns" capTh resizable>{{col}}</th>
     <th capTh>index</th>
   </tr>
@@ -10,9 +10,8 @@
     capTbody
     [data]="data"
   >
-  <tr *capRow="let row of data; let index = index" capTr>
-    <td *ngFor="let col of columns" capTd>{{ row[col] }}</td>
-    <td capTd>{{index}}</td>
+  <tr *capRow="let row of data; let index" capTr>
+    <td *capCell="'name'" capTd><b>{{ row.name }}</b></td>
   </tr>
   </tbody>
 </table>

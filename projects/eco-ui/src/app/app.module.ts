@@ -13,6 +13,7 @@ import { CapTheadDirective } from './cap-thead.directive';
 import { CapTrComponent } from './cap-tr/cap-tr.component';
 import { CapCellDirective } from './cap-cell.directive';
 import { CapTdComponent } from './cap-td/cap-td.component';
+import { CapMapperPipe } from './cap-mapper.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CapTdComponent } from './cap-td/cap-td.component';
     CapTrComponent,
     CapCellDirective,
     CapTdComponent,
+    CapMapperPipe,
   ],
   imports: [
     BrowserModule,

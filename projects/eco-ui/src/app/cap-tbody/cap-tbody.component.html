@@ -3,6 +3,6 @@
   <ng-container
     *ngFor="let item of data; let index = index"
     [ngTemplateOutlet]="row.template"
-    [ngTemplateOutletContext]="itemToContext(item, index)"
+    [ngTemplateOutletContext]="item | capMapper : itemToContext:  index"
   ></ng-container>
 </ng-container>
