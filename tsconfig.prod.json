@@ -1,9 +1,7 @@
 {
+  "extends": "./tsconfig.json",
   "compileOnSave": false,
-  "include": ["projects/**/*"],
-  "exclude": [
-    "projects/**/*.spec.ts",
-  ],
+  "exclude": ["projects/**/test.ts", "**/*.spec.ts"],
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -11,13 +9,13 @@
     "strictPropertyInitialization": false,
     "strictNullChecks": false,
     "paths": {
-      "@cap-ng2/core": ["projects/cap-ng2/index"],
-      "@cap-ng2/core/*": ["projects/cap-ng2/*"],
+      "@cap-ng2/core": ["dist/cap-ng2/index"],
+      "@cap-ng2/core/*": ["dist/cap-ng2/*"],
       "@eco-ui/*": [
         "projects/eco-ui/*"
       ]
     },
-//    "strict": true,
+    "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "suppressImplicitAnyIndexErrors": true,

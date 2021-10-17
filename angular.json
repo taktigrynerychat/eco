@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "el-ng2": {
+    "cap-ng2": {
       "projectType": "library",
-      "root": "projects/el-ng2",
-      "sourceRoot": "projects/el-ng2/src",
-      "prefix": "el",
+      "root": "projects/cap-ng2",
+      "sourceRoot": "projects/cap-ng2",
+      "prefix": "cap",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/el-ng2/ng-package.json"
+            "project": "projects/cap-ng2/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/el-ng2/tsconfig.lib.prod.json"
+              "tsConfig": "projects/cap-ng2/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/el-ng2/tsconfig.lib.json"
+              "tsConfig": "projects/cap-ng2/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,9 +27,18 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/el-ng2/src/test.ts",
-            "tsConfig": "projects/el-ng2/tsconfig.spec.json",
-            "karmaConfig": "projects/el-ng2/karma.conf.js"
+            "main": "projects/cap-ng2/test.ts",
+            "tsConfig": "projects/cap-ng2/tsconfig.spec.json",
+            "karmaConfig": "projects/cap-ng2/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/cap-ng2/**/*.ts",
+              "projects/cap-ng2/**/*.component.html"
+            ]
           }
         }
       }
@@ -74,7 +83,7 @@
             "index": "projects/eco-ui/src/index.html",
             "main": "projects/eco-ui/src/main.ts",
             "polyfills": "projects/eco-ui/src/polyfills.ts",
-            "tsConfig": "projects/eco-ui/tsconfig.app.json",
+            "tsConfig": "projects/eco-ui/tsconfig.dev.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/eco-ui/src/favicon.ico",
@@ -84,10 +93,14 @@
               "projects/eco-ui/src/styles.scss",
 							"./node_modules/leaflet/dist/leaflet.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["projects/cap-ng2/styles"]
+            },
             "scripts": []
           },
           "configurations": {
             "production": {
+              "tsConfig": "projects/eco-ui/tsconfig.prod.json",
               "budgets": [
                 {
                   "type": "initial",
@@ -154,9 +167,18 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/eco-ui/src/**/*.ts",
+              "projects/eco-ui/src/**/*.component.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "el-ng2"
+  "defaultProject": "eco-ui"
 }

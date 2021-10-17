@@ -1,3 +1,5 @@
+import {Component} from '@angular/core';
+import {CapThemes} from '@cap-ng2/core/constants';
 import {Component, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import {HttpClient} from "@angular/common/http";
@@ -7,8 +9,16 @@ import 'leaflet.markercluster';
 @Component({
   selector: 'eco-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
+export class AppComponent {
+  title: string = 'eco-ui';
+  capThemes: typeof CapThemes = CapThemes;
+  currentTheme: CapThemes;
+
+  public hello(): void {
+    console.log('HELLO!');
+  }
 export class AppComponent implements OnInit {
   map: Map;
 
