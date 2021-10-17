@@ -25,7 +25,7 @@ export class TestComponent implements OnInit {
     },
   ];
 
-  public columns: string[] = ['id', 'name', 'surname', 'london'];
+  public columns: string[] = ['id', 'name', 'surname'];
 
   constructor(private cdr: ChangeDetectorRef) {
   }
@@ -35,7 +35,31 @@ export class TestComponent implements OnInit {
 
   changeColumns(): void {
     this.columns = ['id', 'name'];
-    this.cdr.detectChanges();
+  }
+
+  changeData(): void {
+    this.data= [
+      {
+        id: 2,
+        name: '222',
+        surname: 'R222',
+      },
+      {
+        id: 3,
+        name: 'V22d',
+        surname: 'R2',
+      },
+      {
+        id: 4,
+        name: 'Vldasd',
+        surname: 'Rusadasdasdov',
+      },
+      {
+        id: 4,
+        name: 'Vldasd',
+        surname: 'Rusadasdasdov',
+      },
+    ];
   }
 
 }

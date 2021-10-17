@@ -10,9 +10,12 @@
     [data]="data"
   >
   <tr *capRow="let row of data; let index" capTr>
+    <td *capCell="'id'" capTd><i>{{ row.id }}</i></td>
     <td *capCell="'name'" capTd><b>{{ row.name }}</b></td>
+    <td *capCell="'surname'" capTd><b>{{ row.surname }}</b></td>
   </tr>
   </tbody>
 </table>
 
-<button (click)="changeColumns()">change</button>
+<button (click)="changeColumns()">changeColumns</button>
+<button (click)="changeData()">changeData</button>

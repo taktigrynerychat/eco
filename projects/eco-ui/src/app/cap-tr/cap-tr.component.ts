@@ -9,12 +9,13 @@ import {
   QueryList,
   ViewEncapsulation,
 } from '@angular/core';
+import { LogObservable } from '@cap-ng2/core/decorators';
 import { CapCellDirective } from '@eco-ui/src/app/cap-cell.directive';
 import { CapTableDirective } from '@eco-ui/src/app/cap-table.directive';
 import { CapTbodyComponent } from '@eco-ui/src/app/cap-tbody/cap-tbody.component';
 import { CapTheadDirective } from '@eco-ui/src/app/cap-thead.directive';
 import { Observable, of } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { delay, map, startWith } from 'rxjs/operators';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -54,6 +55,7 @@ export class CapTrComponent<T> implements OnInit {
     this.item$ = this.tbody.rows.changes.pipe(
       startWith(null),
       map(() => this.tbody.data[this.tbody.rows.toArray().findIndex((row: CapTrComponent<T>) => row === this)]),
+      delay(0),
     );
 
     this.columns$ = this.table.thList.changes

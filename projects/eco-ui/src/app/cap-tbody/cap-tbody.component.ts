@@ -27,7 +27,7 @@ export class CapTbodyComponent<T> {
   @ContentChild(forwardRef(() => CapRowDirective))
   public row?: Readonly<CapRowDirective<T>>;
 
-  @ContentChildren(forwardRef(() => CapTrComponent))
+  @ContentChildren(CapTrComponent)
   public rows: QueryList<CapTrComponent<T>> = new QueryList<CapTrComponent<T>>();
 
   @HostBinding('class.cap-tbody')
