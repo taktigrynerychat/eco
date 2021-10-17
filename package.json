@@ -22,6 +22,10 @@
     "@angular/platform-browser-dynamic": "~12.1.2",
     "@angular/router": "~12.1.2",
     "@cap-ng2/core": "file:dist/cap-ng2",
+    "@types/leaflet": "^1.7.5",
+    "@types/leaflet.markercluster": "^1.4.5",
+    "leaflet": "^1.7.1",
+    "leaflet.markercluster": "^1.5.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
