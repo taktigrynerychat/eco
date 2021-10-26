@@ -4,16 +4,22 @@ import * as L from 'leaflet';
 import {Map} from 'leaflet';
 import 'leaflet.markercluster';
 
+interface SegmentMeta {
+	html?: string;
+	arcEnd?: number;
+}
+
 @Component({
-  selector: 'eco-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss'],
+	selector: 'eco-map',
+	templateUrl: './map.component.html',
+	styleUrls: ['./map.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapComponent implements OnInit {
 	map: Map;
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) {
+	}
 
 	ngOnInit(): void {
 		this.initMap();
@@ -24,19 +30,21 @@ export class MapComponent implements OnInit {
 			attributionControl: false,
 		}).setView([59.88, 30.3], 10);
 		L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-			subdomains:['mt0','mt1','mt2','mt3'],
+			subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 		}).addTo(this.map);
 		this.fetchData();
 	}
 
 	fetchData(): void {
 		this.http.get('./assets/markers.json').subscribe((data: object) => {
+			const me: MapComponent = this;
 			let counter: number = 0;
 			let markerCluster: L.MarkerClusterGroup = L.markerClusterGroup({
 				iconCreateFunction: function (cluster: L.MarkerCluster) {
 					let markers: Array<L.Marker> = cluster.getAllChildMarkers();
+					let typesCount: object = me.getTypesCount(markers);
 					return L.divIcon({
-						html: `<div class="circle">${markers.length}</div>`,
+						html: me.getCluster(typesCount, markers.length),
 						className: 'mycluster',
 						iconSize: L.point(32, 32),
 					});
@@ -47,18 +55,26 @@ export class MapComponent implements OnInit {
 			});
 			for (let i in data) {
 				let recycleTypes: Array<string> = data[i].content_text.split(', ');
-				let badge: string | number = recycleTypes.length == 1 ? recycleTypes[0][0] : recycleTypes.length;
-				markerCluster.addLayer(
-					L.marker([data[i].lat, data[i].lng], {
-						icon: L.divIcon({
-							className: 'custom-div-icon',
-							iconSize: [20, 20],
-							iconAnchor: [8, 7],
-							// html: `<div class="marker" title="${data[i].content_text}">${badge}</div>`,
-							html: this.getMarker(),
-						}),
+
+				let marker: L.Marker = L.marker([data[i].lat, data[i].lng], {
+					icon: L.divIcon({
+						className: 'custom-div-icon',
+						iconSize: [20, 20],
+						iconAnchor: [8, 7],
+						html: this.getMarker(recycleTypes),
 					}),
-				);
+				});
+				marker.feature = {
+					type: 'Feature',
+					geometry: {
+						type: 'Point',
+						coordinates: [data[i].lat, data[i].lng],
+					},
+					properties: {
+						types: recycleTypes,
+					},
+				};
+				markerCluster.addLayer(marker);
 				// L.circle([data[i].lat, data[i].lng], {color: 'green', fillColor: 'green', radius: 1}).addTo(this.map);
 				counter++;
 			}
@@ -66,10 +82,55 @@ export class MapComponent implements OnInit {
 		});
 	}
 
-	getMarker(): string {
+	getTypesCount(markers: L.Marker[]): object {
+		const result: object = {
+			total: 0,
+		};
+		for (let m of markers) {
+			let markerTypes: string[] = m.feature.properties.types;
+			for (let t of markerTypes) {
+				if (!result[t]) {
+					result[t] = 0;
+				}
+				result[t]++;
+				result['total']++;
+			}
+		}
+		return result;
+	}
+
+	getCluster(props: object, markerCount: number): string {
+		const total: number = props['total'];
+		delete props['total'];
+		const recycleTypes: string[] = Object.keys(props);
+
+		let segments: string = '';
+		let start: number = 0;
+		for (let i: number = 0; i < recycleTypes.length; i++) {
+			let segmentMeta: SegmentMeta = this.segment(i, recycleTypes[i], recycleTypes.length, 360 / total * props[recycleTypes[i]], start);
+			start = segmentMeta.arcEnd;
+			segments += segmentMeta.html;
+		}
+
+		return `
+			<svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet">
+				<title>${recycleTypes.join(', ')}</title>
+				${segments}
+				<circle cx="150" cy="150" r="100" fill="#fff"/>-->
+				<text x="50%" y="50%" text-anchor="middle" font-size="60pt" stroke="#51c5cf" stroke-width="2px" dy=".3em">${markerCount}</text>
+			</svg>
+		`;
+	}
+
+	getMarker(recycleTypes: string[]): string {
+		let segments: string = '';
+		for (let i: number = 0; i < recycleTypes.length; i++) {
+			segments += this.segment(i, recycleTypes[i], recycleTypes.length).html;
+		}
+		// https://observablehq.com/@haakenlid/svg-circle
 		return `<svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet">
-							${this.range(2).map((i: number) => this.segment(i)).join('\n  ')}
-<!--							<circle cx="150" cy="150" r="100" fill="#fff"/>-->
+							<title>${recycleTypes.join(', ')}</title>
+							${segments}
 						</svg>`;
 		// return `<svg id="theMap" width="100%" height="100%" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet">
 		// 					<circle cx="400" cy="400" r="300" fill="#660"/>
@@ -106,20 +167,42 @@ export class MapComponent implements OnInit {
 		].join('');
 	}
 
-	segment(n: number): string {
+	segment(n: number, color: string, segmentCount: number, arcDegrees: number = null, arcStart: number = null): SegmentMeta {
+		const segment: SegmentMeta = {};
 		const svgSize: number = 300;
-		const segments: number = 2;
+		const segments: number = segmentCount;
 		const margin: number = 0;
 		const radius: number = 150;
 		const width: number = 150;
 
-		const center: number = svgSize/2;
-		const degrees: number = 360 / segments;
-		const start: number = degrees * n;
-		const end: number = (degrees * (n + 1 - margin) + (margin == 0 ? 1 : 0));
-		const path: string = this.segmentPath(center, center, radius, radius-width, start, end);
-		const fill: string = 'red';
-		return `<path d="${path}" style="fill:${fill};stroke:none" />`;
+		const center: number = svgSize / 2;
+		const degrees: number = (arcDegrees !== null) ? arcDegrees : 360 / segments;
+		const start: number = (arcStart !== null) ? arcStart : degrees * n;
+		const end: number = (arcStart !== null) ? arcStart + arcDegrees + (margin == 0 ? 1 : 0) :
+			(degrees * (n + 1 - margin) + (margin == 0 ? 1 : 0));
+		segment.arcEnd = end;
+		const path: string = this.segmentPath(center, center, radius, radius - width, start, end);
+		const fill: object = {
+			'Бумага': '#FFFF00',
+			'Стекло': '#0000FF',
+			'Пластик': '#FF0000',
+			'Металл': '#808080',
+			'Иное': '#800080',
+			'Одежда': '#8B4513',
+			'Опасные отходы': '#000000',
+			'Батарейки': '#FFA500',
+			'Лампочки': '#008000',
+			'Бытовая техника': '#AFEEEE',
+			'Тетра Пак': '#32CD32',
+			'Шины': '#C0C0C0',
+			'Крышечки': '#000080',
+		};
+		if (segmentCount == 1) {
+			segment.html = `<circle cx="${center}" cy="${center}" r="${radius}" fill="${fill[color]}"/>`;
+		} else {
+			segment.html = `<path d="${path}" style="fill:${fill[color]};stroke:none" />`;
+		}
+		return segment;
 	}
 
 	// download(content, fileName, contentType) {
