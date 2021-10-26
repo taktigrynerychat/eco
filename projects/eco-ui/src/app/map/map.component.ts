@@ -29,7 +29,8 @@ export class MapComponent implements OnInit {
 		this.map = L.map('map', {
 			attributionControl: false,
 		}).setView([59.88, 30.3], 10);
-		L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+		//http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}
+		L.tileLayer('http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}', {
 			subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 		}).addTo(this.map);
 		this.fetchData();
