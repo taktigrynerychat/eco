@@ -117,8 +117,8 @@ export class MapComponent implements OnInit {
 			<svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet">
 				<title>${recycleTypes.join(', ')}</title>
 				${segments}
-				<circle cx="150" cy="150" r="100" fill="#fff"/>-->
-				<text x="50%" y="50%" text-anchor="middle" font-size="60pt" stroke="#51c5cf" stroke-width="2px" dy=".3em">${markerCount}</text>
+				<circle cx="150" cy="150" r="100" fill="#fff"/>
+				<text x="50%" y="50%" text-anchor="middle" font-size="70pt" stroke="#51c5cf" stroke-width="2px" dy=".3em">${markerCount}</text>
 			</svg>
 		`;
 	}

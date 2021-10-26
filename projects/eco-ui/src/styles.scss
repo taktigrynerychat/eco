@@ -37,5 +37,11 @@ body, html {
 svg {
 	-webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
 	filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+	transition: transform 0.2s;
+	transform-origin: center;
 	/* Similar syntax to box-shadow */
+}
+
+svg:hover {
+	transform: scale(2.5);
 }
