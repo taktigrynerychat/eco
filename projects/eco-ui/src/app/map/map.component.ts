@@ -27,6 +27,7 @@ export class MapComponent implements OnInit {
 
 	initMap(): void {
 		this.map = L.map('map', {
+			zoomControl: false,
 			attributionControl: false,
 		}).setView([59.88, 30.3], 10);
 		//http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}
@@ -47,7 +48,7 @@ export class MapComponent implements OnInit {
 					return L.divIcon({
 						html: me.getCluster(typesCount, markers.length),
 						className: 'mycluster',
-						iconSize: L.point(32, 32),
+						iconSize: [35, 35],
 					});
 				},
 				spiderfyOnMaxZoom: false,
@@ -60,7 +61,7 @@ export class MapComponent implements OnInit {
 				let marker: L.Marker = L.marker([data[i].lat, data[i].lng], {
 					icon: L.divIcon({
 						className: 'custom-div-icon',
-						iconSize: [20, 20],
+						iconSize: [28, 28],
 						iconAnchor: [8, 7],
 						html: this.getMarker(recycleTypes),
 					}),
@@ -117,8 +118,8 @@ export class MapComponent implements OnInit {
 			<svg width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet">
 				<title>${recycleTypes.join(', ')}</title>
 				${segments}
-				<circle cx="150" cy="150" r="100" fill="#fff"/>
-				<text x="50%" y="50%" text-anchor="middle" font-size="70pt" stroke="#51c5cf" stroke-width="2px" dy=".3em">${markerCount}</text>
+				<circle cx="150" cy="150" r="40%" fill="#FFF"/>
+				<text x="50%" y="50%" text-anchor="middle" font-size="70pt" stroke="#000" fill="#000" stroke-width="5px" dy=".3em">${markerCount}</text>
 			</svg>
 		`;
 	}
@@ -133,11 +134,6 @@ export class MapComponent implements OnInit {
 							<title>${recycleTypes.join(', ')}</title>
 							${segments}
 						</svg>`;
-		// return `<svg id="theMap" width="100%" height="100%" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid meet">
-		// 					<circle cx="400" cy="400" r="300" fill="#660"/>
-		// 					<g id="arcs" transform=" translate(400 400) rotate(-90) scale(1 -1)"></g>
-		// 					<circle cx="400" cy="400" r="100" fill="#fff"/>
-		// 				</svg>`;
 	}
 
 	range(n: number): number[] {
@@ -173,8 +169,8 @@ export class MapComponent implements OnInit {
 		const svgSize: number = 300;
 		const segments: number = segmentCount;
 		const margin: number = 0;
-		const radius: number = 150;
-		const width: number = 150;
+		const radius: number = svgSize / 2;
+		const width: number = svgSize / 2;
 
 		const center: number = svgSize / 2;
 		const degrees: number = (arcDegrees !== null) ? arcDegrees : 360 / segments;

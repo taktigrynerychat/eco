@@ -6,11 +6,15 @@ import { AppComponent } from './app.component';
 import {CapButtonModule} from '@cap-ng2/core/directives/button';
 import {HttpClientModule} from '@angular/common/http';
 import { MapComponent } from './map/map.component';
+import { HeaderComponent } from './hud/header/header.component';
+import { HudComponent } from './hud/hud.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
+    HeaderComponent,
+    HudComponent,
   ],
   imports: [
     BrowserModule,

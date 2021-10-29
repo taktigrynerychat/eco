@@ -4,7 +4,8 @@
 @import 'cap-ng-global';
 body, html {
 	width: 100%;
-	height: 100%;
+	height: 100vh;
+	max-height: 100vh;
 	margin: 0;
 }
 
@@ -12,36 +13,13 @@ body, html {
 	box-sizing: border-box;
 }
 
-.marker {
-	border: 2px solid green;
-	background-color: rgba(50, 200, 80, 0.5);
-	border-radius: 50%;
-	width: 16px;
-	height: 16px;
-	text-align: center;
-	line-height: 13px;
-	font-weight: bold;
-	font-size: 10px;
-}
-
-.circle {
-	width: 32px;
-	height: 32px;
-	line-height: 32px;
-	border: 2px solid blue;
-	background-color: rgba(50, 80, 200, 0.5);
-	text-align: center;
-	border-radius: 50%;
-}
-
 svg {
 	-webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
 	filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
 	transition: transform 0.2s;
 	transform-origin: center;
-	/* Similar syntax to box-shadow */
 }
 
 svg:hover {
-	transform: scale(2.5);
+	transform: scale(1.7);
 }

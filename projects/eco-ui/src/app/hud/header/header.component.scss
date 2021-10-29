@@ -1,0 +1,24 @@
+:host {
+	pointer-events: all;
+}
+.header {
+	height: 64px;
+	display: flex;
+	align-items: center;
+
+
+	.logo-wrapper {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		padding: 8px;
+		margin-left: 8px;
+		.logo {
+			height: 100%;
+		}
+		.name {
+			margin: 0 0 0 10px;
+			padding-bottom: 10px;
+		}
+	}
+}
