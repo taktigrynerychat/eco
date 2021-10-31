@@ -1,0 +1,6 @@
+<div *ngFor="let item of mapService.legends">
+	<div class="item" *ngIf="(mapService.stream$ | async)[item.name] !== 0">
+		<div class="mark" [style.background]="item.color"></div>
+		<div class="description">{{item.name}} ({{(mapService.stream$ | async)[item.name]}})</div>
+	</div>
+</div>

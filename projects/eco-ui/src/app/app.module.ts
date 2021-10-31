@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { MapComponent } from './map/map.component';
 import { HeaderComponent } from './hud/header/header.component';
 import { HudComponent } from './hud/hud.component';
+import { LegendComponent } from './map/legend/legend.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HudComponent } from './hud/hud.component';
     MapComponent,
     HeaderComponent,
     HudComponent,
+    LegendComponent,
   ],
   imports: [
     BrowserModule,

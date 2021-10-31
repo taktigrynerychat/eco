@@ -1,11 +1,9 @@
 :host {
 	pointer-events: all;
-}
-.header {
-	height: 64px;
+	background-color: rgba(255, 255, 255, 0.8);
 	display: flex;
 	align-items: center;
-
+	box-shadow: 0 8px 8px rgba(0, 32, 51, 0.04), 0 12px 28px rgba(0, 32, 51, 0.12);
 
 	.logo-wrapper {
 		height: 100%;
@@ -17,8 +15,11 @@
 			height: 100%;
 		}
 		.name {
+			font-size: 24px;
 			margin: 0 0 0 10px;
-			padding-bottom: 10px;
+			padding-bottom: 7px;
+			color: #0078D2;
+			font-family: Manrope-Bold, serif;
 		}
 	}
 }

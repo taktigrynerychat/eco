@@ -1,5 +1,12 @@
 :host {
-  display: block;
+	display: grid;
+	grid-template-rows: 60px 1fr;
   height: 100%;
   overflow: auto;
+	max-height: 100vh;
+}
+
+.main-wrapper {
+	height: 100%;
+	position: relative;
 }

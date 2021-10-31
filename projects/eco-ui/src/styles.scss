@@ -2,6 +2,17 @@
 @import 'cap-theme';
 @import 'assets/styles/base';
 @import 'cap-ng-global';
+
+@font-face {
+	font-family: "Manrope";
+	src: url("/assets/fonts/Manrope/Manrope-VariableFont_wght.ttf");
+}
+
+@font-face {
+	font-family: "Manrope-bold";
+	src: url("/assets/fonts/Manrope/Manrope-Bold.ttf");
+}
+
 body, html {
 	width: 100%;
 	height: 100vh;
@@ -11,11 +22,11 @@ body, html {
 
 * {
 	box-sizing: border-box;
+	font-family: Manrope, serif;
 }
 
 svg {
-	-webkit-filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
-	filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+	filter: drop-shadow(0px 4px 4px rgba(0, 32, 51, 0.16)) drop-shadow(0px 8px 24px rgba(0, 32, 51, 0.12));
 	transition: transform 0.2s;
 	transform-origin: center;
 }

@@ -1,9 +1,14 @@
 :host {
 	z-index: 2;
 	position: absolute;
-	display: flex;
 	height: 100%;
 	width: 100%;
 	overflow: auto;
 	pointer-events: none;
+	display: grid;
+	grid-template-rows: 1fr;
+
+	.viewport {
+		position: relative;
+	}
 }

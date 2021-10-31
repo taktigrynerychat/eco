@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import * as L from 'leaflet';
 import {Map} from 'leaflet';
 import 'leaflet.markercluster';
+import {MapService} from '@eco-ui/src/app/services/map.service';
 
 interface SegmentMeta {
 	html?: string;
@@ -18,8 +19,10 @@ interface SegmentMeta {
 export class MapComponent implements OnInit {
 	map: Map;
 
-	constructor(private http: HttpClient) {
-	}
+	constructor(
+		private http: HttpClient,
+		private mapService: MapService,
+	) {}
 
 	ngOnInit(): void {
 		this.initMap();
@@ -30,7 +33,8 @@ export class MapComponent implements OnInit {
 			zoomControl: false,
 			attributionControl: false,
 		}).setView([59.88, 30.3], 10);
-		//http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}
+		this.map.on('moveend', () => this.mapService.setMapBounds(this.map.getBounds()));
+		this.map.on('zoomend', () => this.map.getBounds());
 		L.tileLayer('http://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}', {
 			subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 		}).addTo(this.map);
@@ -47,7 +51,7 @@ export class MapComponent implements OnInit {
 					let typesCount: object = me.getTypesCount(markers);
 					return L.divIcon({
 						html: me.getCluster(typesCount, markers.length),
-						className: 'mycluster',
+						className: 'cluster',
 						iconSize: [35, 35],
 					});
 				},
@@ -76,8 +80,9 @@ export class MapComponent implements OnInit {
 						types: recycleTypes,
 					},
 				};
+
+				this.mapService.markers.push(marker);
 				markerCluster.addLayer(marker);
-				// L.circle([data[i].lat, data[i].lng], {color: 'green', fillColor: 'green', radius: 1}).addTo(this.map);
 				counter++;
 			}
 			this.map.addLayer(markerCluster);
@@ -179,21 +184,7 @@ export class MapComponent implements OnInit {
 			(degrees * (n + 1 - margin) + (margin == 0 ? 1 : 0));
 		segment.arcEnd = end;
 		const path: string = this.segmentPath(center, center, radius, radius - width, start, end);
-		const fill: object = {
-			'Бумага': '#FFFF00',
-			'Стекло': '#0000FF',
-			'Пластик': '#FF0000',
-			'Металл': '#808080',
-			'Иное': '#800080',
-			'Одежда': '#8B4513',
-			'Опасные отходы': '#000000',
-			'Батарейки': '#FFA500',
-			'Лампочки': '#008000',
-			'Бытовая техника': '#AFEEEE',
-			'Тетра Пак': '#32CD32',
-			'Шины': '#C0C0C0',
-			'Крышечки': '#000080',
-		};
+		const fill: object = this.mapService.legendColorDictionary;
 		if (segmentCount == 1) {
 			segment.html = `<circle cx="${center}" cy="${center}" r="${radius}" fill="${fill[color]}"/>`;
 		} else {
